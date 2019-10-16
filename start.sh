@@ -271,10 +271,10 @@ clean_images_and_containers() {
 
 setup
 intro
-#find_containers
-#run_containers
-#build_containers
-#share_containers
+find_containers
+run_containers
+build_containers
+share_containers
 deploy_containers
 clean_images_and_containers
 
