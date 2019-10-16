@@ -109,7 +109,18 @@ deploy_containers() {
 	vim tron.yaml
 
 	echo
-	echo_color "Now, run this inside of a miniature OpenShift instance called CodeReady Containers. Connect to CRC and create a new project"
+	echo_color "Let's use CodeReady Containers"
+        echo_color "It provides an all in one OpenShift environment"
+        echo_color "CRC lets us simulate a production Kubernetes installation"
+	echo
+	read_color "oc get nodes"
+	oc get nodes
+	echo
+	read_color "oc get projects"
+	oc get projects
+
+	echo
+	echo_color "To use the consume that application YAML that we created with Podman, let's create a new project"
 	echo
 	read_color "oc new-project tron"
 	oc new-project tron
@@ -131,8 +142,10 @@ deploy_containers() {
 	echo
 	read_color "oc get pods -w"
 	oc get pods -w
+	echo
 	read_color "oc describe pod tron"
 	oc describe pod tron
+	echo
 	read_color "oc get pods"
 	oc get pods
 
@@ -141,7 +154,9 @@ deploy_containers() {
 
 	# Advanced Use Case
 	echo
-	echo_color "Let's use podman to create a pod. A Recognizer is a large, hovering vehicle with a central cockpit which are used on the grid"
+	echo_color "Let's use podman to create a pod"
+	echo_color "A Recognizer is a large, hovering vehicle with a central cockpit"
+        echo_color "They are used to hunt down free programs on the grid!"
 	echo
 	read_color "podman pod create --publish 8080:80 -n recognizer"
 	podman pod create --publish 8080:80 -n recognizer
@@ -169,6 +184,7 @@ deploy_containers() {
 	echo
 	read_color "podman pod inspect recognizer"
 	podman pod inspect recognizer
+	echo
 	read_color "podman ps"
 	podman ps
 
@@ -189,6 +205,7 @@ deploy_containers() {
 	echo
 	read_color "oc new-project tron-legacy"
 	oc new-project tron-legacy
+	echo
 	read_color "oc get projects"
 	oc get projects
 
@@ -203,12 +220,23 @@ deploy_containers() {
 	echo
 	read_color "oc get pods -w"
 	oc get pods -w
+	echo
 	read_color "oc describe pod recognizer"
 	oc describe pod recognizer
+	echo
 	read_color "oc get pods"
 	oc get pods
+	echo
 	read_color "oc get svc"
 	oc get svc
+
+	echo
+	echo_color "Bonus: what if I want to run a container with systemd?"
+	echo
+	echo_color "Lets use our simple tron example"
+	echo
+	read_color "podman generate systemd tron"
+	podman generate systemd tron
 }
 
 pause() {
@@ -243,10 +271,10 @@ clean_images_and_containers() {
 
 setup
 intro
-find_containers
-run_containers
-build_containers
-share_containers
+#find_containers
+#run_containers
+#build_containers
+#share_containers
 deploy_containers
 clean_images_and_containers
 
