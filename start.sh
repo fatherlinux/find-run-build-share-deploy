@@ -220,13 +220,13 @@ pause() {
 clean_images_and_containers() {
 
 	echo
+	read_color "Now, let's clean up the containers and pods"
+	echo
 	read_color "podman kill -a"
 	podman kill -a
 	echo
 	read_color "podman rm -a"
 	podman rm -a
-	echo
-	read_color "Now, let's clean up the containers and pods"
 	echo
 	read_color "podman pod kill -a"
 	podman pod kill -a
