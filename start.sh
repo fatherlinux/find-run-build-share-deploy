@@ -143,7 +143,7 @@ deploy_containers() {
 	echo
 	echo_color "Let's use podman to create a pod. A Recognizer is a large, hovering vehicle with a central cockpit which are used on the grid"
 	echo
-	read_color "podman pod create -n recognizer"
+	read_color "podman pod create --publish 8080:80 -n recognizer"
 	podman pod create --publish 8080:80 -n recognizer
 
 	echo
@@ -207,6 +207,8 @@ deploy_containers() {
 	oc describe pod recognizer
 	read_color "oc get pods"
 	oc get pods
+	read_color "oc get svc"
+	oc get svc
 }
 
 pause() {
